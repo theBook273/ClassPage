@@ -35,3 +35,13 @@
 .intro-text {
 	width: 50%;
 }
+@media screen and (max-width: 600px) {
+	.intro-section {
+		flex-direction: column;
+	}
+
+	.intro-image,
+	.intro-text {
+		width: 100%;
+	}
+}
