@@ -1,0 +1,103 @@
+/* Layout chính cho Timeline */
+.timeline-container {
+	position: relative;
+	max-width: 1000px;
+	margin: 50px auto;
+	padding: 0 20px;
+}
+
+/* Thanh dọc ở giữa */
+.timeline-progress-bar {
+	position: absolute;
+	left: 50%;
+	transform: translateX(-50%);
+	width: 4px;
+	height: 100%;
+	background: linear-gradient(180deg, #3498db, #2ecc71); /* Màu xanh 12TN1 */
+	z-index: 1;
+}
+
+/* Chia Grid 3 cột */
+.timeline-item {
+	display: grid;
+	grid-template-columns: 1fr 120px 1fr;
+	margin-bottom: 100px; /* Khoảng cách giữa các năm */
+}
+
+/* Hiệu ứng Sticky */
+.timeline-date,
+.timeline-circle {
+	position: sticky;
+	top: 50vh; /* Giữ ở giữa màn hình khi cuộn */
+}
+
+.timeline-left {
+	text-align: right;
+	padding-right: 40px;
+}
+
+.timeline-date {
+	font-size: 1.2rem;
+	font-weight: bold;
+	color: #3498db;
+}
+
+.timeline-centre {
+	display: flex;
+	justify-content: center;
+	z-index: 2;
+}
+
+.timeline-circle {
+	width: 24px;
+	height: 24px;
+	background: white;
+	border: 4px solid #3498db;
+	border-radius: 50%;
+}
+
+.timeline-right {
+	padding-left: 40px;
+}
+
+.timeline-content h2 {
+	margin-top: 0;
+	color: #2c3e50;
+}
+
+.timeline-image img {
+	width: 100%;
+	border-radius: 8px;
+	margin-top: 15px;
+	box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+/* Mobile: Chuyển về 2 cột hoặc 1 cột */
+@media (max-width: 768px) {
+	.timeline-item {
+		grid-template-columns: 60px 1fr;
+	}
+	.timeline-left {
+		display: none;
+	}
+	.timeline-progress-bar {
+		left: 30px;
+	}
+}
+
+.timeline-image {
+	margin-top: 5px; /* giảm khoảng cách ảnh với chữ, mặc định thường 16-20px */
+}
+
+.timeline-content {
+	margin-bottom: 50px; /* tăng khoảng cách giữa 2 content */
+}
+
+.timeline-content:last-child {
+	margin-bottom: 0;
+}
+.left {
+	display: flex;
+	align-items: center;
+	justify-content: flex-end;
+}

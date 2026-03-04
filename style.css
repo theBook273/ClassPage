@@ -159,4 +159,6 @@ header p {
 .navbar {
 	position: sticky;
 	top: 0;
+	z-index: 100;
+	background-color: var(--bg-section); /* thêm dòng này */
 }
