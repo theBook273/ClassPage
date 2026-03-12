@@ -8,25 +8,24 @@
 	margin-bottom: 20px;
 }
 
+/* Grid layout: 5 cột desktop, 3 cột tablet, 1 cột mobile */
 .members-grid {
 	display: grid;
 	grid-template-columns: repeat(5, 1fr);
 	gap: 24px;
+	width: 100%;
+	box-sizing: border-box;
 }
 
 .member-card {
 	background-color: var(--bg-card);
 	border: 1px solid var(--border);
 	border-radius: 12px;
-	padding: 16px;
-	box-shadow: 0 2px 8px rgba(79, 134, 247, 0.1);
-	text-align: center;
-	min-height: 380px;
-	display: flex;
-	flex-direction: column;
+	/* Chiều cao cố định giúp hiệu ứng lật không bị lỗi layout */
+	height: 380px;
 	perspective: 1000px;
 	transition: all 0.3s ease;
-	background: linear-gradient(135deg, var(--bg-card), rgba(238, 241, 251, 0.6));
+	position: relative;
 }
 
 .member-card:hover {
@@ -35,9 +34,15 @@
 	border-color: rgba(79, 134, 247, 0.3);
 }
 
+/* Ẩn checkbox */
+.member-card input.toggle {
+	display: none;
+}
+
 .card-label {
 	display: block;
 	cursor: pointer;
+	width: 100%;
 	height: 100%;
 }
 
@@ -46,10 +51,11 @@
 	width: 100%;
 	height: 100%;
 	text-align: center;
-	transition: transform 0.6s;
+	transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
 	transform-style: preserve-3d;
 }
 
+/* Hiệu ứng xoay khi nhấn (check vào checkbox ẩn) */
 .member-card input.toggle:checked + .card-label .card-inner {
 	transform: rotateY(180deg);
 }
@@ -66,39 +72,38 @@
 	flex-direction: column;
 	justify-content: center;
 	align-items: center;
-	padding: 16px;
+	padding: 20px;
 	box-sizing: border-box;
-}
-
-.card-front {
-	background-color: var(--bg-card);
+	background: linear-gradient(135deg, var(--bg-card), rgba(238, 241, 251, 0.6));
 }
 
 .card-back {
-	background-color: var(--bg-card);
 	transform: rotateY(180deg);
+	background-color: var(--bg-card);
 	color: var(--text-primary);
-	font-size: 0.9rem;
+	font-size: 0.95rem;
+	line-height: 1.5;
 }
 
+/* Style cho ảnh: Vuông, bo góc, có viền */
 .card-front img {
-	width: 100%;
-	max-width: 120px;
-	height: auto;
-	margin-bottom: 12px;
-	transition:
-		transform 0.3s ease,
-		box-shadow 0.3s ease;
+	width: 120px;
+	height: 120px;
+	object-fit: cover; /* Giữ tỷ lệ ảnh không bị méo */
+	border-radius: 12px; /* Bo góc nhẹ cho ảnh vuông */
+	border: 3px solid var(--border);
+	margin-bottom: 16px;
+	transition: transform 0.3s ease;
 }
 
 .card-front img:hover {
-	transform: scale(1.1);
-	box-shadow: 0 6px 16px rgba(79, 134, 247, 0.3);
+	transform: scale(1.05);
 }
 
 .card-front h3 {
-	font-size: 1rem;
-	margin: 4px 0;
+	font-size: 1.1rem;
+	margin: 8px 0 4px 0;
+	color: var(--text-primary);
 }
 
 .card-front .role {
@@ -106,31 +111,40 @@
 	color: var(--text-secondary);
 }
 
-/* Hide the checkbox */
-.member-card input.toggle {
-	display: none;
-}
+/* --- Responsive Design --- */
 
-/* Responsive design for tablets and phones */
+/* Tablet: 3 cột */
 @media (max-width: 1200px) {
 	.members-grid {
 		grid-template-columns: repeat(3, 1fr);
+		gap: 20px;
 	}
 }
 
+/* Mobile lớn: 2 cột */
 @media (max-width: 768px) {
 	.members-grid {
 		grid-template-columns: repeat(2, 1fr);
+		gap: 15px;
 	}
 }
 
+/* Mobile nhỏ: 1 cột xếp dọc */
 @media (max-width: 640px) {
 	.members-grid {
 		grid-template-columns: 1fr;
-		gap: 16px;
+		gap: 20px;
+		padding: 0 10px; /* Tránh dính sát mép màn hình */
 	}
 
 	.member-card {
-		min-height: auto;
+		height: 340px; /* Giảm chiều cao một chút cho gọn trên mobile */
+		max-width: 320px;
+		margin: 0 auto; /* Căn giữa card */
+	}
+
+	.card-front img {
+		width: 100px;
+		height: 100px;
 	}
 }
