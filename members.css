@@ -1,0 +1,136 @@
+/* Styles specific to the members page */
+
+.members-section h2 {
+	margin-bottom: 8px;
+}
+
+.members-section .small {
+	margin-bottom: 20px;
+}
+
+.members-grid {
+	display: grid;
+	grid-template-columns: repeat(5, 1fr);
+	gap: 24px;
+}
+
+.member-card {
+	background-color: var(--bg-card);
+	border: 1px solid var(--border);
+	border-radius: 12px;
+	padding: 16px;
+	box-shadow: 0 2px 8px rgba(79, 134, 247, 0.1);
+	text-align: center;
+	min-height: 380px;
+	display: flex;
+	flex-direction: column;
+	perspective: 1000px;
+	transition: all 0.3s ease;
+	background: linear-gradient(135deg, var(--bg-card), rgba(238, 241, 251, 0.6));
+}
+
+.member-card:hover {
+	box-shadow: 0 8px 20px rgba(79, 134, 247, 0.25);
+	transform: translateY(-4px);
+	border-color: rgba(79, 134, 247, 0.3);
+}
+
+.card-label {
+	display: block;
+	cursor: pointer;
+	height: 100%;
+}
+
+.card-inner {
+	position: relative;
+	width: 100%;
+	height: 100%;
+	text-align: center;
+	transition: transform 0.6s;
+	transform-style: preserve-3d;
+}
+
+.member-card input.toggle:checked + .card-label .card-inner {
+	transform: rotateY(180deg);
+}
+
+.card-front,
+.card-back {
+	position: absolute;
+	width: 100%;
+	height: 100%;
+	-webkit-backface-visibility: hidden;
+	backface-visibility: hidden;
+	border-radius: 12px;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	padding: 16px;
+	box-sizing: border-box;
+}
+
+.card-front {
+	background-color: var(--bg-card);
+}
+
+.card-back {
+	background-color: var(--bg-card);
+	transform: rotateY(180deg);
+	color: var(--text-primary);
+	font-size: 0.9rem;
+}
+
+.card-front img {
+	width: 100%;
+	max-width: 120px;
+	height: auto;
+	margin-bottom: 12px;
+	transition:
+		transform 0.3s ease,
+		box-shadow 0.3s ease;
+}
+
+.card-front img:hover {
+	transform: scale(1.1);
+	box-shadow: 0 6px 16px rgba(79, 134, 247, 0.3);
+}
+
+.card-front h3 {
+	font-size: 1rem;
+	margin: 4px 0;
+}
+
+.card-front .role {
+	font-size: 0.875rem;
+	color: var(--text-secondary);
+}
+
+/* Hide the checkbox */
+.member-card input.toggle {
+	display: none;
+}
+
+/* Responsive design for tablets and phones */
+@media (max-width: 1200px) {
+	.members-grid {
+		grid-template-columns: repeat(3, 1fr);
+	}
+}
+
+@media (max-width: 768px) {
+	.members-grid {
+		grid-template-columns: repeat(2, 1fr);
+	}
+}
+
+@media (max-width: 640px) {
+	.members-grid {
+		grid-template-columns: 1fr;
+		gap: 16px;
+	}
+
+	.member-card {
+		min-height: auto;
+	}
+}

@@ -1,3 +1,12 @@
+/* Activities Section */
+.activities-section {
+	background: linear-gradient(
+		135deg,
+		rgba(52, 152, 219, 0.03),
+		rgba(46, 204, 113, 0.03)
+	);
+}
+
 /* Layout chính cho Timeline */
 .timeline-container {
 	position: relative;
@@ -13,22 +22,23 @@
 	transform: translateX(-50%);
 	width: 4px;
 	height: 100%;
-	background: linear-gradient(180deg, #3498db, #2ecc71); /* Màu xanh 12TN1 */
+	background: linear-gradient(180deg, #3498db, #2ecc71);
 	z-index: 1;
+	box-shadow: 0 0 12px rgba(52, 152, 219, 0.3);
 }
 
 /* Chia Grid 3 cột */
 .timeline-item {
 	display: grid;
 	grid-template-columns: 1fr 120px 1fr;
-	margin-bottom: 100px; /* Khoảng cách giữa các năm */
+	margin-bottom: 100px;
 }
 
 /* Hiệu ứng Sticky */
 .timeline-date,
 .timeline-circle {
 	position: sticky;
-	top: 50vh; /* Giữ ở giữa màn hình khi cuộn */
+	top: 50vh;
 }
 
 .timeline-left {
@@ -40,6 +50,53 @@
 	font-size: 1.2rem;
 	font-weight: bold;
 	color: #3498db;
+	padding: 12px 20px;
+	border-radius: 8px;
+	transition: all 0.28s ease;
+	will-change: transform, box-shadow, color;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	position: sticky; /* restore sticky behavior */
+	top: 50vh;
+	z-index: 3; /* keep above the progress bar */
+	border: 2px solid rgba(52, 152, 219, 0.12);
+}
+
+.timeline-date::before,
+.timeline-date::after {
+	content: "✦"; /* decorative star */
+	position: absolute;
+	top: 50%;
+	transform: translateY(-50%) scale(1);
+	color: #f1c40f;
+	font-size: 14px;
+	text-shadow: 0 4px 12px rgba(241, 196, 15, 0.12);
+	transition:
+		transform 220ms ease,
+		opacity 220ms ease;
+	opacity: 0.95;
+}
+
+.timeline-date::before {
+	left: -18px;
+}
+
+.timeline-date::after {
+	right: -18px;
+}
+
+.timeline-date:hover::before,
+.timeline-date:hover::after {
+	transform: translateY(-50%) scale(1.12);
+	opacity: 1;
+}
+
+.timeline-date:hover {
+	transform: translateY(-6px);
+	box-shadow: 0 12px 30px rgba(52, 152, 219, 0.18);
+	text-shadow: 0 4px 18px rgba(52, 152, 219, 0.12);
+	color: #1f6fb8;
 }
 
 .timeline-centre {
@@ -54,6 +111,20 @@
 	background: white;
 	border: 4px solid #3498db;
 	border-radius: 50%;
+	box-shadow: 0 0 16px rgba(52, 152, 219, 0.4);
+	transition: all 0.3s ease;
+}
+
+.timeline-circle:hover {
+	transform: scale(1.3);
+	box-shadow: 0 0 24px rgba(52, 152, 219, 0.6);
+}
+.timeline-circle {
+	width: 24px;
+	height: 24px;
+	background: white;
+	border: 4px solid #3498db;
+	border-radius: 50%;
 }
 
 .timeline-right {
@@ -62,14 +133,88 @@
 
 .timeline-content h2 {
 	margin-top: 0;
+	margin-bottom: 12px;
 	color: #2c3e50;
+	font-size: 1.4rem;
+	border-bottom: 2px solid #3498db;
+	padding-bottom: 12px;
+	position: relative;
+	padding-left: 12px;
+}
+
+.timeline-content h2::before {
+	content: "";
+	position: absolute;
+	left: 0;
+	top: 0;
+	width: 4px;
+	height: 100%;
+	background: linear-gradient(180deg, #3498db, #2ecc71);
+	border-radius: 2px;
+}
+
+.timeline-content p {
+	margin: 12px 0;
+	color: #555;
+	line-height: 1.7;
+}
+
+.timeline-content {
+	margin-bottom: 50px;
+	background: linear-gradient(
+		135deg,
+		rgba(255, 255, 255, 0.9),
+		rgba(238, 241, 251, 0.6)
+	);
+	padding: 24px;
+	border-radius: 12px;
+	border: 2px solid #3498db;
+	border-left: 4px solid #3498db;
+	transition: all 0.3s ease;
+	box-shadow: 0 2px 12px rgba(52, 152, 219, 0.1);
+	position: relative;
+}
+
+.timeline-content::after {
+	content: "";
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 4px;
+	height: 100%;
+	background: linear-gradient(180deg, #3498db, #2ecc71);
+	border-radius: 12px 0 0 12px;
+}
+
+.timeline-content:hover {
+	box-shadow: 0 12px 28px rgba(52, 152, 219, 0.2);
+	transform: translateX(8px) translateY(-2px);
+	background: linear-gradient(
+		135deg,
+		rgba(255, 255, 255, 1),
+		rgba(238, 241, 251, 0.8)
+	);
+	border-color: #2ecc71;
+}
+
+.timeline-content:last-child {
+	margin-bottom: 0;
 }
 
 .timeline-image img {
 	width: 100%;
-	border-radius: 8px;
-	margin-top: 15px;
-	box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+	border-radius: 10px;
+	margin-top: 18px;
+	margin-bottom: 0;
+	box-shadow: 0 6px 18px rgba(52, 152, 219, 0.15);
+	transition: all 0.3s ease;
+	border: 1px solid rgba(52, 152, 219, 0.2);
+}
+
+.timeline-image img:hover {
+	transform: scale(1.02) translateY(-2px);
+	box-shadow: 0 10px 28px rgba(52, 152, 219, 0.25);
+	border-color: rgba(52, 152, 219, 0.4);
 }
 
 /* Mobile: Chuyển về 2 cột hoặc 1 cột */
@@ -85,16 +230,52 @@
 	}
 }
 
+@media (max-width: 640px) {
+	.timeline-container {
+		max-width: 100%;
+		padding: 0 12px;
+		margin: 30px auto;
+	}
+
+	.timeline-item {
+		grid-template-columns: 50px 1fr;
+		margin-bottom: 60px;
+	}
+
+	.timeline-progress-bar {
+		left: 25px;
+	}
+
+	.timeline-centre {
+		position: relative;
+		left: -15px;
+	}
+
+	.timeline-circle {
+		width: 20px;
+		height: 20px;
+		border-width: 3px;
+	}
+
+	.timeline-right {
+		padding-left: 20px;
+	}
+
+	.timeline-date {
+		font-size: 1rem;
+	}
+
+	.timeline-content h2 {
+		font-size: 1.2rem;
+	}
+
+	.timeline-image img {
+		border-radius: 8px;
+	}
+}
+
 .timeline-image {
-	margin-top: 5px; /* giảm khoảng cách ảnh với chữ, mặc định thường 16-20px */
-}
-
-.timeline-content {
-	margin-bottom: 50px; /* tăng khoảng cách giữa 2 content */
-}
-
-.timeline-content:last-child {
-	margin-bottom: 0;
+	margin-top: 8px;
 }
 .left {
 	display: flex;
