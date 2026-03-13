@@ -57,15 +57,15 @@
 	display: flex;
 	align-items: center;
 	justify-content: center;
-	position: sticky; /* restore sticky behavior */
+	position: sticky;
 	top: 50vh;
-	z-index: 3; /* keep above the progress bar */
+	z-index: 3;
 	border: 2px solid rgba(52, 152, 219, 0.12);
 }
 
 .timeline-date::before,
 .timeline-date::after {
-	content: "✦"; /* decorative star */
+	content: "✦";
 	position: absolute;
 	top: 50%;
 	transform: translateY(-50%) scale(1);
@@ -118,13 +118,6 @@
 .timeline-circle:hover {
 	transform: scale(1.3);
 	box-shadow: 0 0 24px rgba(52, 152, 219, 0.6);
-}
-.timeline-circle {
-	width: 24px;
-	height: 24px;
-	background: white;
-	border: 4px solid #3498db;
-	border-radius: 50%;
 }
 
 .timeline-right {
@@ -201,6 +194,11 @@
 	margin-bottom: 0;
 }
 
+/* Image */
+.timeline-image {
+	margin-top: 8px;
+}
+
 .timeline-image img {
 	width: 100%;
 	border-radius: 10px;
@@ -217,7 +215,56 @@
 	border-color: rgba(52, 152, 219, 0.4);
 }
 
-/* Mobile: Chuyển về 2 cột hoặc 1 cột */
+/* Video — synced với style ảnh */
+.timeline-video {
+	margin-top: 18px;
+	border-radius: 10px;
+	overflow: hidden;
+	box-shadow: 0 6px 18px rgba(52, 152, 219, 0.15);
+	border: 1px solid rgba(52, 152, 219, 0.2);
+	position: relative;
+	cursor: pointer;
+	transition: all 0.3s ease;
+}
+
+.timeline-video:hover {
+	transform: scale(1.02) translateY(-2px);
+	box-shadow: 0 10px 28px rgba(52, 152, 219, 0.25);
+	border-color: rgba(52, 152, 219, 0.4);
+}
+
+.timeline-video video {
+	width: 100%;
+	display: block;
+}
+
+.video-overlay {
+	position: absolute;
+	inset: 0;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	background: rgba(0, 0, 0, 0.3);
+	transition: opacity 0.2s ease;
+}
+
+.video-overlay.hidden {
+	opacity: 0;
+	pointer-events: none;
+}
+
+.play-icon {
+	font-size: 3rem;
+	color: white;
+	filter: drop-shadow(0 2px 6px rgba(0, 0, 0, 0.5));
+	transition: transform 0.2s ease;
+}
+
+.timeline-video:hover .play-icon {
+	transform: scale(1.15);
+}
+
+/* Mobile */
 @media (max-width: 768px) {
 	.timeline-item {
 		grid-template-columns: 60px 1fr;
@@ -272,11 +319,12 @@
 	.timeline-image img {
 		border-radius: 8px;
 	}
+
+	.timeline-video {
+		border-radius: 8px;
+	}
 }
 
-.timeline-image {
-	margin-top: 8px;
-}
 .left {
 	display: flex;
 	align-items: center;
