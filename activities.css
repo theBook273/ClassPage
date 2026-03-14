@@ -330,3 +330,7 @@
 	align-items: center;
 	justify-content: flex-end;
 }
+
+.timeline-item:last-child .timeline-content:last-child {
+	cursor: pointer;
+}

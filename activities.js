@@ -10,3 +10,9 @@ function toggleVideo(wrapper) {
 		overlay.classList.remove("hidden");
 	}
 }
+
+document
+	.querySelector(".timeline-item:last-child .timeline-content:last-child")
+	.addEventListener("click", () => {
+		window.scrollTo({ top: 0, behavior: "smooth" });
+	});
